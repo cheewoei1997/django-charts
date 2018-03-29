@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from .models import Question, Choice, Chart
+from .models import Question, Choice
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
@@ -50,6 +50,15 @@ def charts(request):
     your_capital_labels = ["Unit Trust", "House", "Shares", "Insurance", "Shares"]	
     your_capital_values = [32, 60, 12, 23, 14]
 
+    questions = list(Question.objects.values_list('question_text'))
+    choices = list(Choice.objects.values_list('choice_text'))
+    votes = list(Choice.objects.values_list('votes'))
+    q = list(Choice.objects.all().filter(question_id=2))
+    print(q)
+    print(questions)
+    print(votes)
+    print(choices)
+
     expenses_value = map(json.dumps, expenses_value)
     cash_flow_value = map(json.dumps, cash_flow_value)
     passive_income_value = map(json.dumps, passive_income_value)
@@ -57,7 +66,7 @@ def charts(request):
     cash_on_hand_values = map(json.dumps, cash_on_hand_values)
     your_capital_labels = map(json.dumps, your_capital_labels)
     your_capital_values = map(json.dumps, your_capital_values)
-    
+
 
     context = {
         'expenses_value': expenses_value,
