@@ -57,6 +57,7 @@ def charts(request):
     cash_on_hand_values = map(json.dumps, cash_on_hand_values)
     your_capital_labels = map(json.dumps, your_capital_labels)
     your_capital_values = map(json.dumps, your_capital_values)
+    
 
     context = {
         'expenses_value': expenses_value,
