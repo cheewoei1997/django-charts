@@ -14,41 +14,65 @@
     
     <script>
         // Start of code to extract data from view 
-            var expenses_value= [];
-            {% for item in expenses_value %}
-                expenses_value.push({{ item|safe }});
+            var question1_choice1_label = [];
+            {% for item in question1_choice1_label %}
+                question1_choice1_label.push({{ item|safe }});
             {% endfor %}
 
-            var cash_flow_value = [];
-            {% for item in cash_flow_value %}
-                cash_flow_value.push({{ item|safe }});
+            var question1_choice2_label = [];
+            {% for item in question1_choice2_label %}
+                question1_choice2_label.push({{ item|safe }});
             {% endfor %}
 
-            var passive_income_value = [];
-            {% for item in passive_income_value %}
-                passive_income_value.push({{ item|safe }});
+            var question2_choice1_label = [];
+            {% for item in question2_choice1_label %}
+                question2_choice1_label.push({{ item|safe }});
             {% endfor %}
 
-            var cash_on_hand_labels = [];
-            {% for item in cash_on_hand_labels %}
-                cash_on_hand_labels.push({{ item|safe }});
+            var question2_choice2_label = [];
+            {% for item in question2_choice2_label %}
+                question2_choice2_label.push({{ item|safe }});
             {% endfor %}
 
-            var cash_on_hand_values = [];
-            {% for item in cash_on_hand_values %}
-                cash_on_hand_values.push({{ item|safe }});
+            var question1_choice1 = [];
+            {% for item in question1_choice1 %}
+                question1_choice1.push({{ item|safe }})
             {% endfor %}
 
-            var your_capital_labels = [];
-            {% for item in your_capital_labels %}
-                your_capital_labels.push({{ item|safe }});
-            {% endfor %}
- 	 
-            var your_capital_values = [];
-            {% for item in your_capital_values %}
-                your_capital_values.push({{ item|safe }});
+            var question1_choice2 = [];
+            {% for item in question1_choice2 %}
+                question1_choice2.push({{ item|safe }})
             {% endfor %}
 
+            var question2_choice1 = [];
+            {% for item in question2_choice1 %}
+                question2_choice1.push({{ item|safe }})
+            {% endfor %}
+
+            var question2_choice2 = [];
+            {% for item in question2_choice2 %}
+                question2_choice2.push({{ item|safe }})
+            {% endfor %}
+
+            var questions = [];
+            {% for item in questions %}
+                questions.push({{ item|safe }});
+            {% endfor %}
+
+            var choices = [];
+            {% for item in choices %}
+                choices.push({{ item|safe }});
+            {% endfor %}
+
+            var votes = [];
+            {% for item in votes %}
+                votes.push({{ item|safe }});
+            {% endfor %}
+
+            var choices_chosen = [];
+            {% for item in choices_chosen %}
+                choices_chosen.push({{ item|safe }});
+            {% endfor %}
 
         function getChart(){
             var ctx = document.getElementById('myChart').getContext('2d');
@@ -57,43 +81,58 @@
             type: 'horizontalBar',
             // The data for our dataset
             data: {
-                labels: ["",""],
+                labels: questions,
                 datasets: [
                     //1st data set
                     {
-                    label: "Expenses",
-                    data: expenses_value,
-                    backgroundColor: [
-                        'rgb(245, 97, 59)',
-                        ],
-                    borderColor: [
-                        'rgba(245, 97, 59, 0.8)'
-                        ],
+                        label: question1_choice1_label,
+                        data: question1_choice1,
+                        backgroundColor: [
+                            'rgb(200, 97, 59)',
+                            
+                            ],
+                        borderColor: [
+                            'rgba(200, 97, 59)'
+                            ],
                     },
                     
                     //2nd data set
                     {
-                    label: "Cash Flow",
-                    data: cash_flow_value,
-                    backgroundColor: [
-                        'rgb(245, 222, 47)',
-                    ],
-                    borderColor: [
-                        'rgba(245, 222, 47)',
-                    ],                                  
-            },
+                        label: question1_choice2_label,
+                        data: question1_choice2,
+                        backgroundColor: [
+                            'rgb(245, 222, 47)',
+                            'rgb(245, 222, 47)',
+                        ],
+                        borderColor: [
+                            'rgba(245, 222, 47)',
+                        ],                                  
+                    },
                     //3rd data set
                     {
-                    label: "Passive Income",
-                    data: passive_income_value,
-                    backgroundColor: [
-                        'rgb(169, 245, 47)',
-                        'rgb(169, 245, 47)'
-                    ],
-                    borderColor: [
-                        'rgb(169, 245, 47)',
-                    ],                                 
-                }]
+                        label: question2_choice1_label,
+                        data: question2_choice1,
+                        backgroundColor: [
+                            'rgb(245, 100, 47)',
+                            'rgb(245, 100, 47)',
+                        ],
+                        borderColor: [
+                            'rgba(245, 100, 47)',
+                        ],                                  
+                    },
+
+                    {
+                        label: question2_choice2_label,
+                        data: question2_choice2,
+                        backgroundColor: [
+                            'rgb(105, 100, 255)',
+                            'rgb(105, 100, 255)',
+                        ],
+                        borderColor: [
+                            'rgba(105, 100, 255)',
+                        ],                                  
+                    },
+                ]
             },
         
             // Configuration options go here
@@ -102,7 +141,7 @@
                 fullWidth: true,
                 title: {
                     display:true,
-                    text: 'Net Cash Flow',
+                    text: 'Questions Voted',
                     position:'top'
                 },
                 scales: {
@@ -141,7 +180,7 @@
         
             // The data for our dataset
             data: {
-                labels: cash_on_hand_labels,
+                labels: questions,
                 datasets: [{
                     label: "My First dataset",
                     backgroundColor: [
@@ -152,7 +191,7 @@
                         'rgb(145, 227, 96)',
                         'rgb(34, 180, 247)'
                         ],
-                    data: cash_on_hand_values,
+                    data: choices_chosen,
                 }]
             },
         
@@ -163,7 +202,7 @@
                 fullWidth: true,
                 title: {
                     display:true,
-                    text: 'Cash On Hand',
+                    text: 'Questions Voted For',
                     position:'top'
                 },
                     legend: {
@@ -171,9 +210,9 @@
                         position: 'right',
                             labels: {
                                 usePointStyle: true
-                        }
+                            }
                     }
-                }
+            }
         });
         }
         function getChart3(){
@@ -184,7 +223,7 @@
         
             // The data for our dataset
             data: {
-                labels: your_capital_labels,
+                labels: choices,
                 datasets: [{
                     label: "Chosen Answers",
                     backgroundColor: [
@@ -201,7 +240,7 @@
                         'rgb(254, 156, 62)',
                         'rgb(238, 74, 85)'
                         ],
-                    data: your_capital_values,
+                    data: votes,
                 }]
             },
         
@@ -246,27 +285,38 @@
         </div>
     </div>
 
-    <div class="d-none d-xl-block" style="z-index: 2; position: absolute; top: 5.75em; left: 43.75%;">
-        xl halo
-    </div>
-    <div class="d-none d-lg-block d-xl-none" style="font-size: 12px; z-index: 2; position: absolute; top: 6.5em; left: 43%;">
-        lg halo
-    </div>
-    <div class="d-none d-md-block d-lg-none" style="z-index: 2; position: absolute; top: 33.75em; left: 39.5%;">
-        md halo
-    </div>
-    <div class="d-none d-sm-block d-md-none" style="font-size: 13px; z-index: 2; position: absolute; top: 31.5em; left: 36%;">
-        small halo
-    </div>
-    <div class="d-block d-sm-none" style="font-size: 12px; position: absolute; top: 21.75em; left: 8em;">
-        xs halo
-    </div>
-
     <script>   
         getChart();
         getChart2();
         getChart3();
     </script>
+
+    <div class="container" style="position: absolute; left: 450px;">
+        <form action="{% url 'polls:charts' %}" method="post">
+            {% csrf_token %}
+            {% for choice in choice %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value=
+                "{{ choice.id }}" />
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+            {% endfor %}
+            <input type="submit" value="Vote" class="btn btn-primary"/>
+        </form>
+    </div>
+
+    <div class="d-none d-xl-block" style="z-index: 2; position: absolute; top: 5.75em; left: 43.75%;">
+            xl halo
+        </div>
+        <div class="d-none d-lg-block d-xl-none" style="font-size: 12px; z-index: 2; position: absolute; top: 6.5em; left: 43%;">
+            lg halo
+        </div>
+        <div class="d-none d-md-block d-lg-none" style="z-index: 2; position: absolute; top: 33.75em; left: 39.5%;">
+            md halo
+        </div>
+        <div class="d-none d-sm-block d-md-none" style="font-size: 13px; z-index: 2; position: absolute; top: 31.5em; left: 36%;">
+            small halo
+        </div>
+        <div class="d-block d-sm-none" style="font-size: 12px; position: absolute; top: 21.75em; left: 8em;">
+            xs halo
+        </div>
 </body>
 </html>
-
